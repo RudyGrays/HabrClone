@@ -1,0 +1,15 @@
+@import './variables/global.scss';
+@import './themes/dark.scss';
+@import './themes/light.scss';
+@import './reset.scss';
+.app {
+		font: var(--font-m);
+		min-height: 100vh;
+		color: var(--primary-color);
+		background-color: var(--bg-color);
+}
+
+.outlined{
+	text-decoration: solid;
+	
+}
