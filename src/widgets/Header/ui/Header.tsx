@@ -1,8 +1,8 @@
-import { useTheme } from 'app/providers/ThemeProvider'
 import { FC } from 'react'
+import { CustomLink } from 'shared/CustomLink'
+import { Logo } from 'shared/SvgComponents'
 import { classNames } from 'shared/lib/ClassNames/classNames'
 import { Navbar } from 'widgets/Navbar'
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher'
 import mainClasses from './Header.module.scss'
 interface HeaderProps{
 	someClasses?: string
@@ -11,12 +11,15 @@ interface HeaderProps{
 
 const Header: FC<HeaderProps> = ({children, someClasses, ...props}) => {
 
-	const {theme} = useTheme()
-
 	return (
 		<div className={classNames(mainClasses.Header, {}, [someClasses])} {...props}>
 			<div className={mainClasses.left}>
-				<ThemeSwitcher/>
+				<CustomLink to={'/'}>
+					<Logo someClasses='white' height={40} width={40} />
+				</CustomLink>
+				
+				
+				
 			</div>
 			<div  className={mainClasses.right}>
 				<Navbar initialLinks={[{to: '/', pathname: 'Главная'}, {to: '/about', pathname: 'О нас'}]} otherClasses={classNames('', {}, [])}/>

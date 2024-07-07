@@ -23,7 +23,7 @@ const Navbar: FC<NavbarProps> = ({ otherClasses, initialLinks }) => {
 		<ul className={classNames(cls.navbar, {}, [otherClasses])}>
 			{links.length === 0 ? 'Некуда переходить'
 				:
-				links.map((({ to, pathname }) => <li><NavLink className={classNames(cls.link)} to={to}>{pathname}</NavLink></li>))}
+				links.map((({ to, pathname }) => <li key={to}><NavLink className={classNames(cls.link)} to={to}>{pathname}</NavLink></li>))}
 		</ul>
 	)
 }

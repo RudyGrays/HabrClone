@@ -1,0 +1,15 @@
+.Sidebar {
+	height: calc(100vh - var(--header-height));
+	transition: width 0.3s;
+	width: 50px;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	padding: 0;
+	background-color: var(--inverted-color);
+	padding: 20px 0px;
+}
+
+.open {
+	width: 200px;
+}
