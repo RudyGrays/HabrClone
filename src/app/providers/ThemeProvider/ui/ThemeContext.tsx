@@ -34,6 +34,6 @@ export const ThemeProvider:FC = ({children}: {children: ReactElement | ReactNode
 
 
 	return <ThemeContext.Provider value={memoValue}>
-		{children}
+  {children}
 	</ThemeContext.Provider>
 }	

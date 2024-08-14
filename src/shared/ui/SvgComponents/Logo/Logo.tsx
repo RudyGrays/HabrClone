@@ -5,12 +5,11 @@ import { classNames } from 'shared/lib/ClassNames/classNames'
 
 interface LogoProps{
 	someClasses?: string
-	props?: any
 	height?: number
 	width?: number
 }
 
-const Logo: FC<LogoProps> = ({children, someClasses, ...props}) => {
+const Logo: FC<LogoProps> = ({someClasses, ...props}) => {
 	return <Logoicon className={classNames('', {}, [someClasses])} {...props} />
 }
 

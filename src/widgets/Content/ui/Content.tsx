@@ -5,14 +5,13 @@ import mainClasses from './Content.module.scss'
 
 interface ContentProps{
 	someClasses?: string
-	props?: any
 }
 
 const Content: FC<ContentProps> = ({children, someClasses, ...props}) => {
 	return (
-		<div className={classNames(mainClasses.Content, {}, [someClasses])} {...props}>
-			{children}
-		</div>
+  <div className={classNames(mainClasses.Content, {}, [someClasses])} {...props}>
+    {children}
+  </div>
 	)
 }
 

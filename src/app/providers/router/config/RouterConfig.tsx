@@ -3,6 +3,7 @@ import { MainPage } from 'pages/MainPage'
 import { MessagesPage } from 'pages/MessagesPage'
 import { RouteProps } from 'react-router-dom'
 
+
 export const enum Routes{
 	MAIN = 'main',
 	ABOUT = 'about',
@@ -19,14 +20,17 @@ export const RoutePaths: Record<Routes, string> = {
 export const RouterConfig: Record<Routes, RouteProps> = {
 	[Routes.MAIN]: {
 		element: <MainPage />,
-		path: RoutePaths.main
+		path: RoutePaths.main,
+		
 	},
 	[Routes.ABOUT]: {
 		element: <AboutPage />,
-		path: RoutePaths.about
+		path: RoutePaths.about,
+		
 	},
 	[Routes.MESSAGES]: {
 		element: <MessagesPage />,
-		path: RoutePaths.messages
+		path: RoutePaths.messages,
+		
 	},
 }

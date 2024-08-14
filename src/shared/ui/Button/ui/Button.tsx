@@ -8,9 +8,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
 
 const Button: FC<ButtonProps> = ({otherClasses, onClick, children}) => {
 	return (
-		<button onClick={onClick} className={classNames(cls.button, {}, [otherClasses])}>
-			{children}
-		</button>
+  <button onClick={onClick} className={classNames(cls.button, {}, [otherClasses])}>
+    {children}
+  </button>
 	)
 }
 

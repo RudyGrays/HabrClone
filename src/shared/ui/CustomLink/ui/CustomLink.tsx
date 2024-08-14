@@ -5,14 +5,13 @@ import mainClasses from './CustomLink.module.scss'
 
 interface CustomLinkProps extends LinkProps{
 	someClasses?: string
-	props?: any
 }
 
 const CustomLink: FC<CustomLinkProps> = ({children, someClasses, ...props}) => {
 	return (
-		<Link className={classNames(mainClasses.Link, {}, [someClasses])} {...props}>
-			{children}
-		</Link>
+  <Link className={classNames(mainClasses.Link, {}, [someClasses])} {...props}>
+    {children}
+  </Link>
 	)
 }
 

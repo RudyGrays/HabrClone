@@ -11,9 +11,9 @@ interface FlexContainerProps{
 
 const FlexContainer: FC<FlexContainerProps> = ({children, someClasses = '', styleProps = {}, ...props}) => {
 	return (
-		<div className={classNames(mainClasses.FlexContainer, {}, [someClasses])} style={styleProps} {...props} >
-			{children}
-		</div>
+  <div className={classNames(mainClasses.FlexContainer, {}, [someClasses])} style={styleProps} {...props} >
+    {children}
+  </div>
 	)
 }
 

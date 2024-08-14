@@ -6,17 +6,17 @@ import mainClasses from './Sidebar.module.scss'
 
 interface SidebarProps{
 	someClasses?: string
-	props?: any
+	
 }
 
 const Sidebar: FC<SidebarProps> = ({children, someClasses, ...props}) => {
-	const {isSidebarOpen, openSidebarHandler} = useSidebar()
+	const {isSidebarOpen} = useSidebar()
 
 
 	return (
-		<div className={classNames(mainClasses.Sidebar, {[mainClasses.open]: isSidebarOpen}, [someClasses])} {...props}>
-			{children}
-		</div>
+  <div className={classNames(mainClasses.Sidebar, {[mainClasses.open]: isSidebarOpen}, [someClasses])} {...props}>
+    {children}
+  </div>
 	)
 }
 

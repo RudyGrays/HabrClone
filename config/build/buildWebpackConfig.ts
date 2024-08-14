@@ -10,7 +10,7 @@ type buildConfig = (options?: BuildOptions) => webpack.Configuration
 
 
 export const buildWebpackConfig:buildConfig = (options) => {
-	const {mode, paths, port} = options
+	const {mode, paths} = options
 
 	return {
 		mode,

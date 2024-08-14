@@ -18,6 +18,6 @@ export const SidebarProvider: FC = ({children}) => {
 	}
 	
 	return <SidebarContext.Provider value={{isSidebarOpen, openSidebarHandler}}>
-		{children}
+  {children}
 	</SidebarContext.Provider>
 }

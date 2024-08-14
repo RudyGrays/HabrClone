@@ -1,10 +1,9 @@
+import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
 
 const MessagesPage = () => {
-	return (
-		<div>
-			Messages
-		</div>
-	)
-}
+  const { t } = useMyTranslation();
 
-export default MessagesPage
+  return <div>{t("страница сообщения")}</div>;
+};
+
+export default MessagesPage;

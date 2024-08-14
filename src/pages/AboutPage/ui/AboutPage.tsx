@@ -1,11 +1,9 @@
+import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
+
 const AboutPage = () => {
-	return (
-		<div>
-			AboutPage
-		
-		</div>
-	)
-}
+  const { t } = useMyTranslation();
 
-export default AboutPage
+  return <div>{t("страница о нас")}</div>;
+};
 
+export default AboutPage;

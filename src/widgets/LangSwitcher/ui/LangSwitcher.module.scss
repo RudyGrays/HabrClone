@@ -1,0 +1,15 @@
+.LangSwitcher{
+	border: none;
+	outline: none;
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	border-radius: 50%;
+	background-color: var(--primary-color);
+	transition: .2s;
+	color: var(--inverted-color);
+
+	&:active{
+		transform: rotateX(70deg);
+	}
+}
