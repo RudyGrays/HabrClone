@@ -21,7 +21,11 @@ const Navbar: FC<NavbarProps> = ({ otherClasses }) => {
                 {t(element)}
               </CustomLink>
             </li>
+<<<<<<< HEAD
           )
+=======
+          ),
+>>>>>>> 64107e7 (Temporary commit)
       )}
     </ul>
   );
