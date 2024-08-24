@@ -1,0 +1,16 @@
+.button {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  width: auto;
+  height: auto;
+  color: var(--primary-color);
+
+  &.outline {
+    border: 1px solid black;
+  }
+
+  &.rounded {
+    border-radius: 5px;
+  }
+}
