@@ -1,23 +1,33 @@
-import { FC, createContext, useState } from 'react'
-
+import {
+  FC,
+  PropsWithChildren,
+  ReactElement,
+  ReactNode,
+  createContext,
+  useState,
+} from "react";
 
 export interface SidebarContextProps {
-	isSidebarOpen?: boolean 
-	openSidebarHandler?: () => void
+  isSidebarOpen?: boolean;
+  openSidebarHandler?: () => void;
 }
 
-export const SidebarContext = createContext<SidebarContextProps>({})
+export const SidebarContext = createContext<SidebarContextProps>({});
 
+export const SidebarProvider: FC<PropsWithChildren<{}>> = ({
+  children,
+}: {
+  children: ReactNode | ReactElement;
+}) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
+  const openSidebarHandler = () => {
+    setIsSidebarOpen(prev => !prev);
+  };
 
-export const SidebarProvider: FC = ({children}) => {
-	const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false)
-
-	const openSidebarHandler = () => {
-		setIsSidebarOpen(prev => !prev)
-	}
-	
-	return <SidebarContext.Provider value={{isSidebarOpen, openSidebarHandler}}>
-  {children}
-	</SidebarContext.Provider>
-}
+  return (
+    <SidebarContext.Provider value={{ isSidebarOpen, openSidebarHandler }}>
+      <>{children}</>
+    </SidebarContext.Provider>
+  );
+};

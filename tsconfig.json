@@ -8,8 +8,11 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"]
+      "*": ["./src/*"],
+      "react": ["./node_modules/react"],
+      "react-dom": ["./node_modules/react-dom"]
     },
+    "strict": false,
     "allowJs": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
@@ -19,5 +22,13 @@
     "compilerOptions": {
       "module": "CommonJS"
     }
-  }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mjs",
+    "**/**/*.ts",
+    "**/**/*.tsx",
+    "src/**/*"
+  ]
 }

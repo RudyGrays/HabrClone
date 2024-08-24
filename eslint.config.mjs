@@ -7,7 +7,8 @@ import eslintReactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
 import eslintTypescript from "typescript-eslint";
 import i18nextPlugin from "eslint-plugin-i18next";
-
+import unusedImports from "eslint-plugin-unused-imports";
+import path from "path";
 /** @type {import('eslint').Linter.Config[]} */
 export default eslintTypescript.config(
   {
@@ -18,6 +19,7 @@ export default eslintTypescript.config(
       react: eslintReact,
       prettier: eslintPluginPrettier,
       i18next: i18nextPlugin,
+      "unused-imports": unusedImports,
     },
   },
   {
@@ -33,10 +35,12 @@ export default eslintTypescript.config(
         ...globals.browser,
       },
       parserOptions: {
-        project: ["tsconfig.json"],
+        project: ["./tsconfig.json"],
+        tsconfigRootDir: path.__dirname,
       },
     },
   },
+
   {
     files: ["**/*.{ts,tsx}"],
     rules: {
@@ -44,12 +48,32 @@ export default eslintTypescript.config(
       "i18next/no-literal-string": ["error", { markupOnly: true }],
       "import/no-unresolved": "off",
       "import/prefer-default-export": "off",
-      "no-unused-vars": "warn",
       "react/require-default-props": "off",
       "react/react-in-jsx-scope": "off",
       "no-shadow": "off",
       "react/jsx-indent": ["warn", 2],
       "react/jsx-props-no-spreading": "off",
+      "no-unused-vars": "off",
+      "unused-imports/no-unused-imports": "error",
+      "@typescript-eslint/no-unused-vars": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-empty-object-type": "off",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          vars: "all",
+          varsIgnorePattern: "^_",
+          args: "after-used",
+          argsIgnorePattern: "^_",
+        },
+      ],
     },
-  }
+  },
+  {
+    files: ["**/src/**/*.test.{ts,tsx}"],
+    rules: {
+      "i18next/no-literal-string": "off",
+    },
+  },
 );

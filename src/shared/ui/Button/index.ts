@@ -1,2 +1,2 @@
-import Button from './ui/Button'
-export { Button }
+import { Button, ButtonVariants } from "./ui/Button";
+export { Button, ButtonVariants };
