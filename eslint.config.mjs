@@ -42,7 +42,7 @@ export default eslintTypescript.config(
   },
 
   {
-    files: ["**/*.{ts,tsx}"],
+    files: ["**/*.{js,ts,tsx}"],
     rules: {
       ...eslintConfigPrettier.rules,
       "i18next/no-literal-string": ["error", { markupOnly: true }],
@@ -71,7 +71,7 @@ export default eslintTypescript.config(
     },
   },
   {
-    files: ["**/src/**/*.test.{ts,tsx}"],
+    files: ["**/src/**/*.test.{js,ts,tsx}"],
     rules: {
       "i18next/no-literal-string": "off",
     },

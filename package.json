@@ -18,6 +18,9 @@
     "sb": "storybook dev -p 6006 -c ./config/storybook",
     "sb:build": "storybook build -c ./config/storybook",
     "test:ui": "npx loki test",
+    "test:ui:json": "node scripts/generate-visual-json-report.mjs",
+    "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
+    "test:ui:report": "npm run test:ui:json && npm run test:ui:html",
     "test:ui:ci": "npx loki test --requireReference --reactUri file:./storybook-static",
     "test:ui:ok": "npx loki approve"
   },
@@ -80,6 +83,7 @@
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.5.11",
     "react-require": "^1.0.1",
+    "reg-cli": "^0.18.7",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
