@@ -68,15 +68,6 @@ export default eslintTypescript.config(
           argsIgnorePattern: "^_",
         },
       ],
-<<<<<<< HEAD
-    },
-  },
-  {
-    files: ["**/src/**/*.test.{ts,tsx}"],
-    rules: {
-      "i18next/no-literal-string": "off",
-=======
->>>>>>> 64107e7 (Temporary commit)
     },
   },
   {

@@ -18,9 +18,5 @@ root.render(
         </ErrorBoundary>
       </SidebarProvider>
     </BrowserRouter>
-<<<<<<< HEAD
-  </ThemeProvider>
-=======
   </ThemeProvider>,
->>>>>>> 64107e7 (Temporary commit)
 );

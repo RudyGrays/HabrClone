@@ -1,0 +1,19 @@
+.Header{
+	display: flex;
+	width: 100%;
+	background-color: var(--inverted-color);
+	height: var(--header-height);
+}
+
+.left{
+	width: 50%;
+	height: 100%;
+	align-items: center;
+	display: flex;
+	padding: 0 20px;
+}
+
+.right{
+	width: 50%;
+	height: 100%;
+}
