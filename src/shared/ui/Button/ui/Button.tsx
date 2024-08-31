@@ -21,7 +21,7 @@ const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      data-testId="button_test"
+      data-testid="button_test"
       onClick={onClick}
       className={classNames(
         cls.button,

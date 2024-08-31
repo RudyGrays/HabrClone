@@ -6,17 +6,23 @@ import { ThemeProvider } from "app/providers/ThemeProvider";
 import "app/styles/index.scss";
 import { BrowserRouter } from "react-router-dom";
 import "shared/config/i18n/i18n";
+import { ModalProvider } from "app/providers/ModalProvider";
+import { StoreProvider } from "app/providers/StoreProvider";
 
 const root = createRoot(document.getElementById("root") as HTMLElement);
 
 root.render(
-  <ThemeProvider>
-    <BrowserRouter>
-      <SidebarProvider>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
-      </SidebarProvider>
-    </BrowserRouter>
-  </ThemeProvider>,
+  <StoreProvider>
+    <ModalProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <SidebarProvider>
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
+          </SidebarProvider>
+        </BrowserRouter>
+      </ThemeProvider>
+    </ModalProvider>
+  </StoreProvider>,
 );

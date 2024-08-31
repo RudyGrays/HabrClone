@@ -59,6 +59,10 @@ export default eslintTypescript.config(
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-empty-object-type": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "error",
+      "no-constant-binary-expression": "off",
+      "@typescript-eslint/no-require-imports": "off",
       "unused-imports/no-unused-vars": [
         "warn",
         {

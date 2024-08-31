@@ -2,6 +2,7 @@
   "extends": "stylelint-config-standard-scss",
   "rules": {
     "selector-class-pattern": null,
-    "number-max-precision": null
+    "number-max-precision": null,
+    "keyframe-block-no-duplicate-selectors": null
   }
 }

@@ -3,6 +3,12 @@
 @import "./themes/light";
 @import "./reset";
 
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
 .app {
   font: var(--font-m);
   min-height: 100vh;

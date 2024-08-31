@@ -1,5 +1,5 @@
 import { useTheme } from "app/providers/ThemeProvider";
-import { memo, Suspense } from "react";
+import { memo, Suspense, useEffect } from "react";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import { FlexContainer } from "shared/ui/FlexContainer";
 import { Content } from "widgets/Content";
@@ -11,14 +11,32 @@ import { useSidebar } from "./providers/SidebarProvider/hooks/useSidebar";
 import { AppRouter } from "./providers/router";
 import { Loader } from "shared/ui/Loader";
 import SidebarSwitcher from "widgets/Sidebar/ui/SidebarSwitcher/ui/SidebarSwitcher";
-
+import { Modal, ToggleModalButton } from "widgets/Modal";
+import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
+import { useModal } from "./providers/ModalProvider";
+import { Counter } from "entities/Counter";
 const App = memo(() => {
   const { theme } = useTheme();
-  const { isSidebarOpen, openSidebarHandler } = useSidebar();
 
+  useEffect(() => {
+    const b = document.body;
+    b.classList.add("app");
+    b.classList.remove("dark");
+    b.classList.remove("light");
+    b.classList.add(theme);
+  }, [theme]);
+
+  const { isSidebarOpen } = useSidebar();
+  const { t } = useMyTranslation();
+
+  const { isModalOpen, toggleModalHandler } = useModal();
   return (
     <div className={classNames("app", {}, [theme])}>
       <Suspense fallback={<Loader />}>
+        <Modal id="mainModal">
+          <Counter />
+        </Modal>
+        <Modal id="testModal">testModal</Modal>
         <Header />
         <FlexContainer styleProps={{ flexDirection: "row" }}>
           <Sidebar>
@@ -32,6 +50,7 @@ const App = memo(() => {
                 gap: "10px",
               }}
             >
+              <ToggleModalButton id="testModal">testModal</ToggleModalButton>
               <LangSwitcher />
               <ThemeSwitcher />
               <SidebarSwitcher />

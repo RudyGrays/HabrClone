@@ -12,7 +12,7 @@ const SidebarSwitcher: FC<SidebarSwitcherProps> = ({ otherClasses }) => {
   return (
     <button
       className={classNames(mainClasses.SidebarSwitcher, {}, [otherClasses])}
-      data-testId="toggle_sidebar"
+      data-testid="toggle_sidebar"
       onClick={() => openSidebarHandler()}
     >
       {isSidebarOpen ? "<-" : "->"}
