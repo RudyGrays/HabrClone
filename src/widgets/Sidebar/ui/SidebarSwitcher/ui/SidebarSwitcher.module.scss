@@ -1,3 +1,12 @@
 .SidebarSwitcher {
   display: block;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: var(--primary-color);
+  background-color: transparent;
+
+  &:active {
+    outline: none;
+  }
 }

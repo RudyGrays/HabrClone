@@ -1,0 +1,58 @@
+.Text {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  color: var(--primary-color);
+}
+
+.small {
+  font-size: 12px;
+}
+
+.medium {
+  font-size: 16px;
+}
+
+.large {
+  font-size: 20px;
+}
+
+.primary {
+  color: #000;
+}
+
+.secondary {
+  color: #666;
+}
+
+.error {
+  color: #f00;
+}
+
+.success {
+  color: #0f0;
+}
+
+.warning {
+  color: #ff0;
+}
+
+.normal {
+  font-weight: 400;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}

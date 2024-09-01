@@ -1,13 +1,36 @@
 .Sidebar {
-	height: calc(100vh - var(--header-height));
-	transition: width 0.3s;
-	width: 50px;
-	display: flex;
-	justify-content: center;
-	background-color: var(--inverted-color);
-	padding: 20px 0;
-}
+  height: calc(100vh - var(--header-height));
+  transition: width 0.3s;
+  width: 50px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--inverted-color);
+  padding: 20px 0;
+  position: relative;
+  align-items: center;
 
-.open {
-	width: 200px;
+  & .toggleButton {
+    position: absolute;
+    right: -20px;
+    bottom: 20px;
+  }
+
+  & .switchers {
+    align-items: center;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20px;
+    transition: 0.3s;
+  }
+
+  &.open {
+    width: 200px;
+  }
+
+  &.open .switchers {
+    flex-direction: row-reverse;
+    gap: 10px;
+  }
 }

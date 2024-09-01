@@ -1,0 +1,15 @@
+.Input {
+  outline: none;
+  max-width: 200px;
+  padding: 3px 2px;
+  color: var(--inverted-color);
+  font-size: var(--font-size-l);
+
+  & input:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: var(--inverted-color);
+  }
+}

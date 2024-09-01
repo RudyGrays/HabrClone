@@ -4,23 +4,24 @@ import cls from "./Navbar.module.scss";
 import { RouterConfig } from "app/providers/router";
 import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
 import { CustomLink } from "shared/ui/CustomLink";
-
 interface NavbarProps {
   otherClasses?: string;
+  short?: boolean;
 }
 
-const Navbar: FC<NavbarProps> = ({ otherClasses }) => {
+const Navbar: FC<NavbarProps> = ({ otherClasses, short }) => {
   const { t } = useMyTranslation();
   return (
     <ul className={classNames(cls.navbar, {}, [otherClasses])}>
       {Object.keys(RouterConfig).map(
         (element: keyof typeof RouterConfig) =>
           element != "страница не найдено" && (
-            <li key={element}>
-              <CustomLink to={RouterConfig[element].path}>
-                {t(element)}
-              </CustomLink>
-            </li>
+            <CustomLink key={element} to={RouterConfig[element].path}>
+              <li>
+                <div className={cls.icon}>{RouterConfig[element].icon}</div>
+                {short && <div className={cls.link}>{t(element)}</div>}
+              </li>
+            </CustomLink>
           ),
       )}
     </ul>

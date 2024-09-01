@@ -6,5 +6,10 @@
   "страница сообщения": "Messages",
   "страница не найдено": "404 Not Found",
   "страница c ошибкой": "Unknown error, come later!",
-  "перезагрузить сайт": "reload site"
+  "перезагрузить сайт": "reload site",
+  "модальное окно": "modal",
+  "войти": "Log in",
+  "вася пупкин": "John Doe",
+  "пароль": "Password",
+  "имя": "Username"
 }

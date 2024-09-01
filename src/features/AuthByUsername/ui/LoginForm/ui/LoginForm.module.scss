@@ -1,0 +1,46 @@
+.LoginForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
+
+  & label {
+    display: flex;
+    gap: 15px;
+
+    & .labelText {
+      width: 40%;
+    }
+
+    @media (width <= 440px) {
+      & {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+
+      & .labelText {
+        width: 70%;
+      }
+    }
+  }
+
+  & .title {
+    margin-bottom: 15px;
+  }
+
+  & .inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (width <= 440px) {
+    & .title {
+      margin-bottom: 15px;
+    }
+
+    & .labelText {
+      width: 70%;
+    }
+  }
+}
