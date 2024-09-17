@@ -1,4 +1,11 @@
-import { FC, PropsWithChildren, createContext, useMemo, useState } from "react";
+import {
+  FC,
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 
 export const enum EnumTheme {
   LIGHT = "light",
@@ -22,14 +29,14 @@ export const ThemeProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
       EnumTheme.LIGHT,
   );
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     localStorage.setItem(
       LOCAL_STORAGE_THEME_KEY,
       theme === EnumTheme.LIGHT ? EnumTheme.DARK : EnumTheme.LIGHT,
     );
     setIsDark(theme === EnumTheme.LIGHT ? false : true);
     setTheme(theme === EnumTheme.LIGHT ? EnumTheme.DARK : EnumTheme.LIGHT);
-  };
+  }, [theme]);
 
   const memoValue = useMemo(
     () => ({
@@ -37,7 +44,7 @@ export const ThemeProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
       isDark,
       toggleTheme,
     }),
-    [theme],
+    [theme, isDark, toggleTheme],
   );
 
   return (

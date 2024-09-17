@@ -4,6 +4,7 @@ import {
   ReactElement,
   ReactNode,
   createContext,
+  useMemo,
   useState,
 } from "react";
 
@@ -19,12 +20,14 @@ export const SidebarProvider: FC<PropsWithChildren<{}>> = ({
 }: {
   children: ReactNode | ReactElement;
 }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [isSidebarOpenState, setIsSidebarOpen] = useState<boolean>(false);
 
   const openSidebarHandler = () => {
     setIsSidebarOpen(prev => !prev);
   };
-
+  const isSidebarOpen = useMemo(() => {
+    return isSidebarOpenState;
+  }, [isSidebarOpenState]);
   return (
     <SidebarContext.Provider value={{ isSidebarOpen, openSidebarHandler }}>
       <>{children}</>

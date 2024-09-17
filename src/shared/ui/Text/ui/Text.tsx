@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, memo, ReactNode } from "react";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import mainClasses from "./Text.module.scss";
 
@@ -12,24 +12,26 @@ interface TextProps {
   className?: string;
 }
 
-const Text: FC<TextProps> = ({
-  tag: Tag = "p",
-  size = "medium",
-  color,
-  weight = "normal",
-  align = "left",
-  children,
-  className,
-}) => {
-  const textClassNames = classNames(mainClasses.Text, {}, [
-    mainClasses[size],
-    mainClasses[color],
-    mainClasses[weight],
-    mainClasses[align],
+const Text: FC<TextProps> = memo(
+  ({
+    tag: Tag = "p",
+    size = "medium",
+    color,
+    weight = "normal",
+    align = "left",
+    children,
     className,
-  ]);
+  }) => {
+    const textClassNames = classNames(mainClasses.Text, {}, [
+      mainClasses[size],
+      mainClasses[color],
+      mainClasses[weight],
+      mainClasses[align],
+      className,
+    ]);
 
-  return <Tag className={textClassNames}>{children}</Tag>;
-};
+    return <Tag className={textClassNames}>{children}</Tag>;
+  },
+);
 
 export { Text };

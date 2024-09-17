@@ -22,6 +22,7 @@ server.post("/login", (req, res) => {
     const db = JSON.parse(
       fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
     );
+    console.log(username, password);
     const { users = [] } = db;
 
     const userFromBd = users.find(
@@ -33,6 +34,54 @@ server.post("/login", (req, res) => {
     }
 
     return res.status(403).json({ message: "User not found" });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e.message });
+  }
+});
+
+server.post("/profile", (req, res) => {
+  try {
+    const { id } = req.body;
+    console.log(id);
+
+    const db = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
+    );
+
+    const { profiles = [] } = db;
+
+    const profileFromBd = profiles.find(profile => profile.id === id);
+
+    if (profileFromBd) {
+      return res.json(profileFromBd);
+    }
+
+    return res.status(403).json("Profile not found");
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e.message });
+  }
+});
+
+server.patch("/profile", (req, res) => {
+  try {
+    const { id } = req.body;
+    console.log(id);
+
+    const db = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
+    );
+
+    const { profiles = [] } = db;
+
+    const profileFromBd = profiles.find(profile => profile.id === id);
+
+    if (profileFromBd) {
+      return res.json(profileFromBd);
+    }
+
+    return res.status(403).json("Profile not found");
   } catch (e) {
     console.log(e);
     return res.status(500).json({ message: e.message });

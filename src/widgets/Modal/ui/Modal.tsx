@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import { FC, ReactNode, useCallback, useEffect, useState } from "react";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import mainClasses from "./Modal.module.scss";
 import { Portal } from "shared/ui/Portal";
@@ -15,20 +15,24 @@ const Modal: FC<ModalProps> = ({ someClasses, children, id }) => {
   const [canClose, setCanClose] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(true);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     if (canClose) {
       return toggleModalHandler(false);
     }
     return;
-  };
-  const onPressEscapeHandler = (e: KeyboardEvent) => {
-    if (
-      (e.key === "Escape" && isModalOpen) ||
-      (e.key === "Space" && isModalOpen)
-    ) {
-      closeModal();
-    }
-  };
+  }, [canClose, toggleModalHandler]);
+
+  const onPressEscapeHandler = useCallback(
+    (e: KeyboardEvent) => {
+      if (
+        (e.key === "Escape" && isModalOpen) ||
+        (e.key === "Space" && isModalOpen)
+      ) {
+        closeModal();
+      }
+    },
+    [closeModal, isModalOpen],
+  );
 
   useEffect(() => {
     setCanClose(false);
@@ -43,7 +47,7 @@ const Modal: FC<ModalProps> = ({ someClasses, children, id }) => {
   useEffect(() => {
     window.addEventListener("keydown", onPressEscapeHandler);
     return () => window.removeEventListener("keydown", onPressEscapeHandler);
-  }, [isModalOpen]);
+  }, [onPressEscapeHandler]);
 
   // useEffect(() => {
   //   if (isModalOpen) {

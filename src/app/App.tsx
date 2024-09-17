@@ -5,13 +5,20 @@ import { FlexContainer } from "shared/ui/FlexContainer";
 import { Content } from "widgets/Content";
 import { Header } from "widgets/Header";
 import { Sidebar } from "widgets/Sidebar";
-import { AppRouter } from "./providers/router";
+import { AppRouter } from "./providers/RouterProvider";
 import { Loader } from "shared/ui/Loader";
 import { Modals } from "shared/ui/Modals";
 import { addThemeOnBody } from "shared/helpers/functions/addThemeClassOnBody";
+import { useAppDispatch } from "./providers/StoreProvider/config/store";
+import { userActions } from "entities/User";
 
 const App = memo(() => {
   const { theme } = useTheme();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(userActions.updateUser());
+  }, [dispatch]);
 
   useEffect(() => {
     addThemeOnBody(theme);

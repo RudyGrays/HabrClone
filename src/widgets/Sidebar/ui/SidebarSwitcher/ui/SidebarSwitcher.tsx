@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { useSidebar } from "app/providers/SidebarProvider/hooks/useSidebar";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import mainClasses from "./SidebarSwitcher.module.scss";
@@ -9,7 +9,7 @@ interface SidebarSwitcherProps {
   otherClasses?: string;
 }
 
-const SidebarSwitcher: FC<SidebarSwitcherProps> = ({ otherClasses }) => {
+const SidebarSwitcher: FC<SidebarSwitcherProps> = memo(({ otherClasses }) => {
   const { isSidebarOpen, openSidebarHandler } = useSidebar();
 
   return (
@@ -21,6 +21,6 @@ const SidebarSwitcher: FC<SidebarSwitcherProps> = ({ otherClasses }) => {
       {isSidebarOpen ? <Icon icon={circleLeft} /> : <Icon icon={circleRight} />}
     </button>
   );
-};
+});
 
 export default SidebarSwitcher;

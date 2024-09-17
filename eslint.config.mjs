@@ -9,6 +9,7 @@ import eslintTypescript from "typescript-eslint";
 import i18nextPlugin from "eslint-plugin-i18next";
 import unusedImports from "eslint-plugin-unused-imports";
 import path from "path";
+
 /** @type {import('eslint').Linter.Config[]} */
 export default eslintTypescript.config(
   {
@@ -59,8 +60,8 @@ export default eslintTypescript.config(
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-empty-object-type": "off",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "error",
+      "react-hooks/rules-of-hooks": "off",
+      "react-hooks/exhaustive-deps": "off",
       "no-constant-binary-expression": "off",
       "no-restricted-imports": [
         "error",

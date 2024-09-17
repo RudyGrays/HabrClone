@@ -1,0 +1,23 @@
+.ProfileCard {
+  display: block;
+  width: 50%;
+  border: 2px solid var(--primary-color);
+  border-radius: 7px;
+  padding: 15px;
+  height: 300px;
+}
+
+.Error {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
+.Loading {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}

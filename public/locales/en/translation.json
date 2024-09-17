@@ -11,5 +11,12 @@
   "войти": "Log in",
   "вася пупкин": "John Doe",
   "пароль": "Password",
-  "имя": "Username"
+  "имя": "Username",
+  "страница карта": "Map",
+  "вход выполнен": "Log in completed, welcome",
+  "выйти": "Log out",
+  "страница профиль": "Profile",
+  "фамилия": "Lastname",
+  "страна": "Country",
+  "возраст": "Age"
 }

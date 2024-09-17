@@ -1,9 +1,17 @@
 .Input {
-  outline: none;
   max-width: 200px;
   padding: 3px 2px;
   color: var(--inverted-color);
   font-size: var(--font-size-l);
+  display: flex;
+  gap: 5px;
+
+  & input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: var(--inverted-color);
+  }
 
   & input:focus {
     outline: none;
@@ -11,5 +19,10 @@
 
   &::placeholder {
     color: var(--inverted-color);
+  }
+
+  & .InputTitle {
+    font-size: var(--font-size-m);
+    color: var(--primary-color);
   }
 }

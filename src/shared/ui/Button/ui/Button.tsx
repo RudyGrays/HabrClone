@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC } from "react";
+import { ButtonHTMLAttributes, FC, memo } from "react";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import cls from "./Button.module.scss";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -13,38 +13,35 @@ export const enum ButtonVariants {
   outline = "outline",
 }
 
-const Button: FC<ButtonProps> = ({
-  otherClasses,
-  onClick,
-  variants,
-  children,
-}) => {
-  return (
-    <button
-      data-testid="button_test"
-      onClick={onClick}
-      className={classNames(
-        cls.button,
-        {
-          [cls[ButtonVariants.outline]]: variants?.find(
-            item => item == ButtonVariants.outline,
-          ),
-          [cls[ButtonVariants.primary]]: variants?.find(
-            item => item == ButtonVariants.primary,
-          ),
-          [cls[ButtonVariants.rounded]]: variants?.find(
-            item => item == ButtonVariants.rounded,
-          ),
-          [cls[ButtonVariants.secondary]]: variants?.find(
-            item => item == ButtonVariants.secondary,
-          ),
-        },
-        [otherClasses],
-      )}
-    >
-      {children}
-    </button>
-  );
-};
+const Button: FC<ButtonProps> = memo(
+  ({ otherClasses, onClick, variants, children }) => {
+    return (
+      <button
+        data-testid="button_test"
+        onClick={onClick}
+        className={classNames(
+          cls.button,
+          {
+            [cls[ButtonVariants.outline]]: variants?.find(
+              item => item == ButtonVariants.outline,
+            ),
+            [cls[ButtonVariants.primary]]: variants?.find(
+              item => item == ButtonVariants.primary,
+            ),
+            [cls[ButtonVariants.rounded]]: variants?.find(
+              item => item == ButtonVariants.rounded,
+            ),
+            [cls[ButtonVariants.secondary]]: variants?.find(
+              item => item == ButtonVariants.secondary,
+            ),
+          },
+          [otherClasses],
+        )}
+      >
+        {children}
+      </button>
+    );
+  },
+);
 
 export { Button };

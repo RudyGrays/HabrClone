@@ -5,6 +5,7 @@ export interface ModalContextProps {
   toggleModalHandler?: (value?: boolean) => void;
   modalId?: string;
   setId?: (id: string) => void;
+  closeModal?: () => void;
 }
 
 export const ModalContext = createContext<ModalContextProps>({});
@@ -26,11 +27,15 @@ export const ModalProvider: FC<PropsWithChildren<ModalContextProps>> = ({
     return setIsModalOpen(prev => !prev);
   };
 
+  const closeModal = () => {
+    return setIsModalOpen(false);
+  };
   const memoizedValue = {
     toggleModalHandler,
     isModalOpen,
     setId,
     modalId,
+    closeModal,
   };
 
   return (

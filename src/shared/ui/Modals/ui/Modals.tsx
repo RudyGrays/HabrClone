@@ -1,5 +1,6 @@
 import { LoginForm } from "features/AuthByUsername";
-import { FC } from "react";
+import { FC, Suspense } from "react";
+import { Loader } from "shared/ui/Loader";
 import { Modal } from "widgets/Modal";
 
 interface ModalsProps {
@@ -10,7 +11,9 @@ const Modals: FC<ModalsProps> = () => {
   return (
     <>
       <Modal id="authModal">
-        <LoginForm />
+        <Suspense fallback={<Loader />}>
+          <LoginForm />
+        </Suspense>
       </Modal>
     </>
   );

@@ -1,5 +1,5 @@
 import { useSidebar } from "app/providers/SidebarProvider/hooks/useSidebar";
-import { FC, PropsWithChildren } from "react";
+import { FC, memo, PropsWithChildren } from "react";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import mainClasses from "./Sidebar.module.scss";
 import { LangSwitcher } from "widgets/LangSwitcher";
@@ -11,11 +11,7 @@ interface SidebarProps {
   someClasses?: string;
 }
 
-const Sidebar: FC<PropsWithChildren<SidebarProps>> = ({
-  children,
-  someClasses,
-  ...props
-}) => {
+const Sidebar: FC<PropsWithChildren<SidebarProps>> = memo(({ someClasses }) => {
   const { isSidebarOpen } = useSidebar();
 
   return (
@@ -26,18 +22,17 @@ const Sidebar: FC<PropsWithChildren<SidebarProps>> = ({
         { [mainClasses.open]: isSidebarOpen },
         [someClasses],
       )}
-      {...props}
     >
-      <span className={mainClasses.toggleButton}>
-        <SidebarSwitcher />
-      </span>
       <Navbar short={isSidebarOpen} />
       <span className={mainClasses.switchers}>
         <LangSwitcher />
         <ThemeSwitcher />
       </span>
+      <span className={mainClasses.toggleButton}>
+        <SidebarSwitcher />
+      </span>
     </div>
   );
-};
+});
 
 export default Sidebar;

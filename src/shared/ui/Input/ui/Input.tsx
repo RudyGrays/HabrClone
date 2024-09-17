@@ -14,6 +14,7 @@ interface InputProps extends HTMLInputProps {
   type?: string;
   placeholder?: string;
   id?: string;
+  title?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -23,6 +24,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       onChange,
       value = "",
       type = "text",
+      title,
       id,
       placeholder = "Введите текст",
       ...props
@@ -34,6 +36,13 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         className={classNames(mainClasses.Input, {}, [someClasses])}
         {...props}
       >
+        {title && (
+          <span
+            className={classNames(mainClasses.InputTitle, {}, [someClasses])}
+          >
+            {title + ">"}
+          </span>
+        )}
         <input
           ref={ref}
           id={id}

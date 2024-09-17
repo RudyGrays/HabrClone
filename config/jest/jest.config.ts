@@ -1,11 +1,9 @@
-/*
- * For a detailed explanation regarding each configuration property and type check, visit:
- * https://jestjs.io/docs/configuration
- */
-
 import path from "path";
 
 export default {
+  globals: {
+    __IS_DEV__: true,
+  },
   coveragePathIgnorePatterns: ["\\\\node_modules\\\\"],
   clearMocks: true,
   testEnvironment: "jsdom",
@@ -18,6 +16,8 @@ export default {
   moduleNameMapper: {
     "\\.s?css$": "identity-obj-proxy",
     "\\.svg": path.resolve(__dirname, "jestEmptyComponent.tsx"),
+    "^axios$": "axios/dist/node/axios.cjs",
+    "react-leaflet": "<rootDir>/mocks/reactLeafletMock.js",
   },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
