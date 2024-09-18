@@ -1,9 +1,9 @@
-import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
+import { useTranslation } from "react-i18next";
 
 const AboutPage = () => {
-  const { t } = useMyTranslation();
+  const { t } = useTranslation();
 
-  return <div>{t("страница о нас")}</div>;
+  return <div>{t<string>("страница о нас")}</div>;
 };
 
 export default AboutPage;

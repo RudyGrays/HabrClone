@@ -1,7 +1,6 @@
 import { FC, memo, useEffect, useRef } from "react";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import mainClasses from "./LoginForm.module.scss";
-import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
 import { Text } from "shared/ui/Text";
 import { Input } from "shared/ui/Input";
 import { useInput } from "shared/helpers/hooks/useInput/useInput";
@@ -16,13 +15,14 @@ import { getLoginLoading } from "features/AuthByUsername/model/selectors/getLogi
 import { getLoginError } from "features/AuthByUsername/model/selectors/getLoginError/getLoginError";
 import { useDynamicReducerLoader } from "shared/helpers/hooks/useDynamicReducerLoader/useDynamicReducerLoader";
 import { loginFormReducer } from "features/AuthByUsername/model/slice/loginFormSlice";
+import { useTranslation } from "react-i18next";
 
 interface LoginFormProps {
   someClasses?: string;
 }
 
 const LoginForm: FC<LoginFormProps> = memo(({ someClasses, ...props }) => {
-  const { t } = useMyTranslation();
+  const { t } = useTranslation();
 
   const { isModalOpen, closeModal } = useModal();
 
@@ -90,7 +90,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ someClasses, ...props }) => {
       {error && <Text color="error">{error}</Text>}
       {authorized && (
         <Text color="success">
-          {t("вход выполнен")} {authData.username}
+          {t<string>("вход выполнен")} {authData.username}
         </Text>
       )}
       <Text
@@ -100,7 +100,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ someClasses, ...props }) => {
         tag="h2"
         size="large"
       >
-        {t("войти")}
+        {t<string>("войти")}
       </Text>
       <div className={classNames(mainClasses.inputs, {}, [])}>
         <Input
@@ -120,7 +120,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ someClasses, ...props }) => {
       </div>
       <div className={classNames(mainClasses.buttons, {}, [])}>
         <Button type="submit">
-          <Text size="large">{t("войти")}</Text>
+          <Text size="large">{t<string>("войти")}</Text>
         </Button>
       </div>
     </form>

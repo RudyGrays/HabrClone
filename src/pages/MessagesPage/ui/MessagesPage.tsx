@@ -1,10 +1,10 @@
 import { memo } from "react";
-import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
+import { useTranslation } from "react-i18next";
 
 const MessagesPage = memo(() => {
-  const { t } = useMyTranslation();
+  const { t } = useTranslation();
 
-  return <div>{t("страница сообщения")}</div>;
+  return <div>{t<string>("страница сообщения")}</div>;
 });
 
 export default MessagesPage;

@@ -14,16 +14,16 @@ import { useDynamicReducerLoader } from "shared/helpers/hooks/useDynamicReducerL
 import { Loader } from "shared/ui/Loader";
 import { Error } from "shared/ui/Error/Error";
 import { Input } from "shared/ui/Input";
-import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
 
 import { getUserId } from "entities/User";
+import { useTranslation } from "react-i18next";
 
 interface ProfileCardProps {
   someClasses?: string;
 }
 
 const ProfileCard: FC<ProfileCardProps> = ({ someClasses }) => {
-  const { t } = useMyTranslation();
+  const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
 
@@ -66,10 +66,10 @@ const ProfileCard: FC<ProfileCardProps> = ({ someClasses }) => {
 
   return (
     <div className={classNames(mainClasses.ProfileCard, {}, [someClasses])}>
-      <Input title={t("имя")} id="name" value={name} />
-      <Input title={t("фамилия")} id="lastname" value={lastname} />
-      <Input title={t("страна")} id="country" value={country} />
-      <Input title={t("возраст")} id="age" value={age} />
+      <Input title={t<string>("имя")} id="name" value={name} />
+      <Input title={t<string>("фамилия")} id="lastname" value={lastname} />
+      <Input title={t<string>("страна")} id="country" value={country} />
+      <Input title={t<string>("возраст")} id="age" value={age} />
     </div>
   );
 };

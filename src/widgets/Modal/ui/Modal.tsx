@@ -13,7 +13,7 @@ interface ModalProps {
 const Modal: FC<ModalProps> = ({ someClasses, children, id }) => {
   const { isModalOpen, toggleModalHandler, modalId } = useModal();
   const [canClose, setCanClose] = useState<boolean>(false);
-  const [isMounted, setIsMounted] = useState<boolean>(true);
+  const [isMounted] = useState<boolean>(true);
 
   const closeModal = useCallback(() => {
     if (canClose) {

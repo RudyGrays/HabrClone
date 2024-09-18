@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
-import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
 import { classNames } from "shared/lib/ClassNames/classNames";
 import mainClasses from "./LangSwitcher.module.scss";
+import { useTranslation } from "react-i18next";
 
 interface LangSwitcherProps {
   someClasses?: string;
@@ -9,7 +9,7 @@ interface LangSwitcherProps {
 
 const LangSwitcher: FC<LangSwitcherProps> = memo(
   ({ someClasses, ...props }) => {
-    const { t, i18n } = useMyTranslation();
+    const { t, i18n } = useTranslation();
 
     const changeLanguage = () =>
       i18n.changeLanguage(i18n.language === "ru" ? "en" : "ru");
@@ -20,7 +20,7 @@ const LangSwitcher: FC<LangSwitcherProps> = memo(
         className={classNames(mainClasses.LangSwitcher, {}, [someClasses])}
         {...props}
       >
-        {t("сменить язык")}
+        {t<string>("сменить язык")}
       </button>
     );
   },

@@ -1,9 +1,9 @@
 import { memo } from "react";
-import useMyTranslation from "shared/helpers/hooks/useTranslation/useTranslation";
+import { useTranslation } from "react-i18next";
 const MainPage = memo(() => {
-  const { t } = useMyTranslation();
+  const { t } = useTranslation();
 
-  return <div>{t("страница главная")}</div>;
+  return <div>{t<string>("страница главная")}</div>;
 });
 
 export default MainPage;
