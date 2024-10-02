@@ -10,17 +10,28 @@ export interface ToState {
   prevPath: string;
 }
 interface CustomLinkProps extends Omit<LinkProps, "to"> {
-  someClasses?: string;
+  otherClasses?: string;
   disabled?: boolean;
-  to: To;
+  to?: To;
   children: ReactNode | string;
 }
 
 const CustomLink: FC<CustomLinkProps> = memo(
-  ({ children, disabled = false, to, someClasses, ...props }) => {
+  ({
+    children,
+    disabled = false,
+    to = { pathname: "/", state: { prevPath: "/" } },
+    otherClasses,
+  }) => {
     if (disabled) {
       return (
-        <div className={classNames(mainClasses.CustomLink, {}, [someClasses])}>
+        <div
+          className={classNames(
+            mainClasses.CustomLink,
+            { [mainClasses.disabled]: disabled },
+            [otherClasses],
+          )}
+        >
           {children}
         </div>
       );
@@ -29,8 +40,7 @@ const CustomLink: FC<CustomLinkProps> = memo(
     return (
       <NavLink
         to={to}
-        className={classNames(mainClasses.CustomLink, {}, [someClasses])}
-        {...props}
+        className={classNames(mainClasses.CustomLink, {}, [otherClasses])}
       >
         {children}
       </NavLink>

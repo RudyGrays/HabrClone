@@ -11,6 +11,7 @@ export const enum ButtonVariants {
   secondary = "secondary",
   rounded = "rounded",
   outline = "outline",
+  warning = "warning",
 }
 
 const Button: FC<ButtonProps> = memo(
@@ -33,6 +34,9 @@ const Button: FC<ButtonProps> = memo(
             ),
             [cls[ButtonVariants.secondary]]: variants?.find(
               item => item == ButtonVariants.secondary,
+            ),
+            [cls[ButtonVariants.warning]]: variants?.find(
+              item => item == ButtonVariants.warning,
             ),
           },
           [otherClasses],

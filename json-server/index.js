@@ -64,24 +64,36 @@ server.post("/profile", (req, res) => {
   }
 });
 
-server.patch("/profile", (req, res) => {
+server.post("/updateProfile", (req, res) => {
   try {
-    const { id } = req.body;
-    console.log(id);
+    const { id, profileData } = req.body;
 
     const db = JSON.parse(
       fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
     );
+    console.log(profileData);
 
     const { profiles = [] } = db;
 
-    const profileFromBd = profiles.find(profile => profile.id === id);
+    const newProfiles = profiles.map(profile => {
+      if (profile.id === id) {
+        profile = {
+          ...profile,
+          ...profileData,
+        };
+      }
+      return profile;
+    });
 
-    if (profileFromBd) {
-      return res.json(profileFromBd);
+    const profile = newProfiles.find(profile => profile.id == id);
+
+    db.profiles = newProfiles;
+    console.log(newProfiles);
+    if (profile) {
+      fs.writeFileSync(path.resolve(__dirname, "db.json"), JSON.stringify(db));
+      return res.json(profile);
     }
-
-    return res.status(403).json("Profile not found");
+    return res.status(403).json("Fail");
   } catch (e) {
     console.log(e);
     return res.status(500).json({ message: e.message });

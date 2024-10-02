@@ -1,9 +1,7 @@
 import { configureStore, ReducersMapObject } from "@reduxjs/toolkit";
 import { StateSchema, ThunkExtraArg } from "./StateSchema";
-// import { userReducer } from "entities/User";
-
+import { userReducer } from "entities/User";
 import { useDispatch } from "react-redux";
-import { userReducer } from "entities/User/model/slice/UserSlice";
 import { createReducerManager } from "./ReducerManager";
 import { $api } from "shared/api/axiosApiInstance";
 import { NavigateFunction } from "react-router-dom";
@@ -11,8 +9,10 @@ import { NavigateFunction } from "react-router-dom";
 export const createReduxStore = (
   navigate: NavigateFunction,
   initialState?: StateSchema,
+  asyncReducers?: ReducersMapObject<StateSchema>,
 ) => {
   const rootReducers: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
     user: userReducer,
   };
 

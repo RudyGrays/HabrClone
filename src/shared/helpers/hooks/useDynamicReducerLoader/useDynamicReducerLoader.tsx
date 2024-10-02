@@ -4,21 +4,25 @@ import {
   StateSchemaKey,
 } from "app/providers/StoreProvider";
 import { useStore } from "react-redux";
+import { useEffect } from "react";
 
-const useDynamicReducerLoader = () => {
+const useDynamicReducerLoader = (
+  reducerName: StateSchemaKey,
+  reducer: Reducer,
+): void => {
   const store = useStore() as ReduxStoreWithManager;
 
-  const addReducer = (reducerName: StateSchemaKey, reducer: Reducer) => {
-    store.reducerManager.add(reducerName, reducer);
-  };
-  const removeReducer = (reducerName: StateSchemaKey) => {
-    store.reducerManager.remove(reducerName);
-  };
+  useEffect(() => {
+    if (!store.reducerManager.getReducerMap()[reducerName]) {
+      store.reducerManager.add(reducerName, reducer);
+    }
 
-  return {
-    addReducer,
-    removeReducer,
-  };
+    return () => {
+      store.reducerManager.remove(reducerName);
+    };
+  }, [store, reducerName, reducer]);
+
+  return null;
 };
 
 export { useDynamicReducerLoader };

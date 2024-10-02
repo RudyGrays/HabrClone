@@ -22,6 +22,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     {
       someClasses,
       onChange,
+      readOnly = false,
       value = "",
       type = "text",
       title,
@@ -44,6 +45,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </span>
         )}
         <input
+          readOnly={readOnly}
           ref={ref}
           id={id}
           placeholder={placeholder}

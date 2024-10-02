@@ -18,12 +18,12 @@ export function componentRender(
   const { route = "/", initialState } = options;
 
   return render(
-    <StoreProvider initialState={initialState as StateSchema}>
-      <MemoryRouter initialEntries={[route]}>
+    <MemoryRouter initialEntries={[route]}>
+      <StoreProvider initialState={initialState as StateSchema}>
         <SidebarProvider>
           <I18nextProvider i18n={i18n}>{component}</I18nextProvider>
         </SidebarProvider>
-      </MemoryRouter>
-    </StoreProvider>,
+      </StoreProvider>
+    </MemoryRouter>,
   );
 }

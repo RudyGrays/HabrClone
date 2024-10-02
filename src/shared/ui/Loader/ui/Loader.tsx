@@ -6,7 +6,7 @@ interface LoaderProps {
   someClasses?: string;
 }
 
-const Loader: FC<LoaderProps> = ({ someClasses, ...props }) => {
+const Loader: FC<LoaderProps> = ({ someClasses }) => {
   return (
     <div className={classNames(mainClasses["lds-roller"], {}, [someClasses])}>
       <div></div>

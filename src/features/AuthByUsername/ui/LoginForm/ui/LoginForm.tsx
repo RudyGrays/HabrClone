@@ -32,13 +32,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ someClasses, ...props }) => {
 
   const { authorized, authData } = useSelector(getUserState);
 
-  const { addReducer, removeReducer } = useDynamicReducerLoader();
-
-  useEffect(() => {
-    addReducer("loginForm", loginFormReducer);
-
-    return () => removeReducer("loginForm");
-  }, []);
+  useDynamicReducerLoader("loginForm", loginFormReducer);
 
   const dispatch = useAppDispatch();
 
@@ -87,12 +81,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ someClasses, ...props }) => {
       {...props}
     >
       {isLoading && <Loader />}
-      {error && <Text color="error">{error}</Text>}
-      {authorized && (
-        <Text color="success">
-          {t<string>("вход выполнен")} {authData.username}
-        </Text>
-      )}
+
       <Text
         className={classNames(mainClasses.title, {}, [])}
         weight="bold"
@@ -102,6 +91,12 @@ const LoginForm: FC<LoginFormProps> = memo(({ someClasses, ...props }) => {
       >
         {t<string>("войти")}
       </Text>
+      {error && <Text color="error">{error}</Text>}
+      {authorized && (
+        <Text color="success">
+          {t<string>("вход выполнен")} {authData.username}
+        </Text>
+      )}
       <div className={classNames(mainClasses.inputs, {}, [])}>
         <Input
           title={t("имя")}

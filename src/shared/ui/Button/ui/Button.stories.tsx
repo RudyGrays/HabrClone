@@ -3,6 +3,7 @@ import { EnumTheme } from "app/providers/ThemeProvider/ui/ThemeContext";
 import { ThemeDecorator } from "shared/config/storybook/ThemeDecorator/ThemeDecorator";
 import { Button } from "shared/ui/Button";
 import { ButtonVariants } from "shared/ui/Button";
+
 export default {
   title: "shared/Button",
   component: Button,

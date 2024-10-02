@@ -1,4 +1,3 @@
-import "app/styles/index.scss";
 import { StoryFn } from "@storybook/react";
 import { EnumTheme } from "app/providers/ThemeProvider/ui/ThemeContext";
 

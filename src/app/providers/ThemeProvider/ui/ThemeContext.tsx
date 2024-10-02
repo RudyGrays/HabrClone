@@ -10,6 +10,7 @@ import {
 export const enum EnumTheme {
   LIGHT = "light",
   DARK = "dark",
+  ORANGE = "orange",
 }
 
 export const ThemeContext = createContext<ThemeContextProps>({});
@@ -30,12 +31,26 @@ export const ThemeProvider: FC<PropsWithChildren<{}>> = ({ children }) => {
   );
 
   const toggleTheme = useCallback(() => {
-    localStorage.setItem(
-      LOCAL_STORAGE_THEME_KEY,
-      theme === EnumTheme.LIGHT ? EnumTheme.DARK : EnumTheme.LIGHT,
-    );
-    setIsDark(theme === EnumTheme.LIGHT ? false : true);
-    setTheme(theme === EnumTheme.LIGHT ? EnumTheme.DARK : EnumTheme.LIGHT);
+    let currentTheme: EnumTheme;
+
+    switch (theme) {
+      case EnumTheme.ORANGE:
+        currentTheme = EnumTheme.LIGHT;
+        break;
+      case EnumTheme.LIGHT:
+        currentTheme = EnumTheme.DARK;
+        break;
+      case EnumTheme.DARK:
+        currentTheme = EnumTheme.ORANGE;
+        break;
+      default:
+        currentTheme = EnumTheme.LIGHT;
+        break;
+    }
+    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, currentTheme);
+    setTheme(currentTheme);
+
+    setIsDark(theme === EnumTheme.DARK ? true : false);
   }, [theme]);
 
   const memoValue = useMemo(

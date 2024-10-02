@@ -4,13 +4,13 @@ import mainClasses from "./Error.module.scss";
 import { Text } from "../Text";
 
 interface ErrorProps {
-  someClasses?: string;
+  otherClasses?: string;
   text?: string;
 }
 
-const Error: FC<ErrorProps> = ({ someClasses, text = "" }) => {
+const Error: FC<ErrorProps> = ({ otherClasses, text = "" }) => {
   return (
-    <div className={classNames(mainClasses.Error, {}, [someClasses])}>
+    <div className={classNames(mainClasses.Error, {}, [otherClasses])}>
       <Text color="error">{text}</Text>
     </div>
   );

@@ -1,5 +1,3 @@
-export { ProfileSchema, Profile } from "./model/types/ProfileSchema";
-
 export {
   ProfileSlice,
   profileReducer,
@@ -15,4 +13,14 @@ export {
   getProfileLoading,
   getProfileName,
   getProfileState,
+  getProfileReadonly,
+  getNewProfile,
 } from "./model/selectors/selectors";
+
+export {
+  Profile,
+  ProfileErrors,
+  ProfileErrorsEnum,
+  ProfileErrorsType,
+  ProfileSchema,
+} from "./model/types/ProfileSchema";

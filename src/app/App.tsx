@@ -10,11 +10,13 @@ import { Loader } from "shared/ui/Loader";
 import { Modals } from "shared/ui/Modals";
 import { addThemeOnBody } from "shared/helpers/functions/addThemeClassOnBody";
 import { useAppDispatch } from "./providers/StoreProvider/config/store";
-import { userActions } from "entities/User";
+import { getUserInit, userActions } from "entities/User";
+import { useSelector } from "react-redux";
 
 const App = memo(() => {
   const { theme } = useTheme();
   const dispatch = useAppDispatch();
+  const _init = useSelector(getUserInit);
 
   useEffect(() => {
     dispatch(userActions.updateUser());
@@ -32,7 +34,7 @@ const App = memo(() => {
           <Sidebar />
           <Content>
             <Modals />
-            <AppRouter />
+            {_init && <AppRouter />}
           </Content>
         </FlexContainer>
       </Suspense>

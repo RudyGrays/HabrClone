@@ -5,6 +5,14 @@
   border-radius: 7px;
   padding: 15px;
   height: 300px;
+
+  &.edit {
+    border-color: rgb(68 205 68);
+  }
+
+  &.errors {
+    border-color: rgb(246 28 28);
+  }
 }
 
 .Error {
@@ -20,4 +28,9 @@
   height: 100%;
   align-items: center;
   justify-content: center;
+}
+
+.Buttons {
+  display: flex;
+  gap: 20px;
 }

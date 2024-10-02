@@ -7,6 +7,7 @@ const initialState: UserSchema = {
     username: "",
   },
   authorized: false,
+  _init: false,
 };
 
 export const userSlice = createSlice({
@@ -14,6 +15,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action: PayloadAction<User>) => {
+      console.log("dispatched");
       state.authData.id = action.payload.id;
       state.authData.username = action.payload.username;
       state.authorized = true;
@@ -21,7 +23,7 @@ export const userSlice = createSlice({
         id: action.payload.id,
         username: action.payload.username,
       };
-
+      state._init = true;
       localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(user));
     },
     logout: (state, action: PayloadAction<User>) => {
@@ -42,6 +44,7 @@ export const userSlice = createSlice({
         state.authData.username = user.username;
         state.authorized = true;
       }
+      state._init = true;
     },
   },
 });

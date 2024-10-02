@@ -6,12 +6,18 @@
   height: auto;
   color: var(--primary-color);
   cursor: pointer;
+  padding: 5px;
 
   &.outline {
-    border: 1px solid black;
+    border: 1px solid var(--primary-color);
   }
 
   &.rounded {
     border-radius: 5px;
+  }
+
+  &.warning {
+    border: 1px solid var(--warning-color);
+    color: var(--warning-color);
   }
 }

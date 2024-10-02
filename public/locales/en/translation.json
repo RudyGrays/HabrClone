@@ -18,5 +18,16 @@
   "страница профиль": "Profile",
   "фамилия": "Lastname",
   "страна": "Country",
-  "возраст": "Age"
+  "возраст": "Age",
+  "отмена": "Cancel",
+  "редактировать": "Edit",
+  "страница статьи": "Articles",
+
+  "ошибка в имени": "Incorrect username",
+  "ошибка в фамилии": "Incorrect lastname",
+  "ошибка в пароле": "Incorrect password",
+  "ошибка в возрасте": "Incorrect age",
+  "ошибка в стране": "Incorrect country",
+  "ошибка с сервера": "Error from server",
+  "ошибка нет данных": "No data"
 }

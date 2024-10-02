@@ -9,14 +9,19 @@ import { AxiosInstance } from "axios";
 import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUsername";
+import { ProfileCardSchema } from "features/EditableProfileCard";
+
 import { NavigateFunction } from "react-router-dom";
 
 export interface StateSchema {
   loginForm?: LoginSchema;
-  user: UserSchema;
+  user?: UserSchema;
   profile?: ProfileSchema;
+  profileCard?: ProfileCardSchema;
 }
-
+export type ReducersList = {
+  [name in StateSchemaKey]?: Reducer;
+};
 export interface ThunkExtraArg {
   api?: AxiosInstance;
   navigate?: NavigateFunction;
@@ -26,7 +31,7 @@ export interface ThunkConfig<T> {
   rejectValue: T;
 }
 
-export type StateSchemaKey = keyof StateSchema;
+export type StateSchemaKey = keyof Partial<StateSchema>;
 
 export interface ReducerManager {
   getReducerMap: () => ReducersMapObject<StateSchema>;
