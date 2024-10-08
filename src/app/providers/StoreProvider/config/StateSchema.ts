@@ -19,13 +19,17 @@ export interface StateSchema {
   profile?: ProfileSchema;
   profileCard?: ProfileCardSchema;
 }
+
+
 export type ReducersList = {
   [name in StateSchemaKey]?: Reducer;
 };
+
 export interface ThunkExtraArg {
   api?: AxiosInstance;
   navigate?: NavigateFunction;
 }
+
 export interface ThunkConfig<T> {
   extra: ThunkExtraArg;
   rejectValue: T;

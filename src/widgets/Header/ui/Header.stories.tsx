@@ -13,3 +13,13 @@ const Template: StoryFn = args => <Header {...args} />;
 export const Default = Template.bind({});
 
 Default.decorators = [StoreDecorator({})];
+
+export const WithAuth = Template.bind({});
+
+WithAuth.decorators = [
+  StoreDecorator({
+    user: {
+      authorized: true,
+    },
+  }),
+];

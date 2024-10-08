@@ -56,11 +56,6 @@ export const RouterConfig: Record<Routes, CustomRouteProps> = {
     icon: <Icon icon={ic_article} />,
     forAuthUser: true,
   },
-  // [Routes.MAP]: {
-  //   element: <MapPage />,
-  //   path: RoutePaths[Routes.MAP],
-  //   icon: <Icon icon={map2} />,
-  // },
 
   [Routes.ABOUT]: {
     element: <AboutPage />,

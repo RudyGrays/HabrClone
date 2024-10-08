@@ -8,9 +8,10 @@ interface ModalProps {
   someClasses?: string;
   children: ReactNode;
   id: string;
+  testOpen?: boolean;
 }
 
-const Modal: FC<ModalProps> = ({ someClasses, children, id }) => {
+const Modal: FC<ModalProps> = ({ someClasses, children, id, testOpen }) => {
   const { isModalOpen, toggleModalHandler, modalId } = useModal();
   const [canClose, setCanClose] = useState<boolean>(false);
   const [isMounted] = useState<boolean>(true);

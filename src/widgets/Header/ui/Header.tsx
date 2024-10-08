@@ -26,7 +26,7 @@ const Header: FC<HeaderProps> = memo(({ someClasses }) => {
       data-testid="header_test"
       className={classNames(mainClasses.Header, {}, [someClasses])}
     >
-      <div className={mainClasses.left}></div>
+      <div className={mainClasses.left}>VK</div>
       <div className={mainClasses.right}>
         {!authorized ? (
           <div className={mainClasses.loginButton}>

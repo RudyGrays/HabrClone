@@ -3,6 +3,8 @@ import webpack from "webpack";
 import { BuildOptions } from "./types/config";
 
 export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
+  const { isDev } = options;
+
   const typescript = {
     test: /\.tsx?$/,
     use: "ts-loader",
@@ -21,7 +23,8 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
             "i18next-extract",
             { nsSeparator: "~", locales: ["ru", "en"], keAsDefaultValue: true },
           ],
-        ],
+          isDev && require.resolve("react-refresh/babel"),
+        ].filter(Boolean),
       },
     },
   };

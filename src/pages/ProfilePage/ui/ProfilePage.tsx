@@ -10,7 +10,6 @@ import {
   getProfileError,
   getProfileLoading,
   getProfileReadonly,
-  getProfileState,
   Profile,
   profileActions,
   profileReducer,
@@ -35,7 +34,7 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ someClasses }) => {
   const error = useSelector(getProfileError);
   const isLoading = useSelector(getProfileLoading);
   const readonly = useSelector(getProfileReadonly);
-  const profile = useSelector(getProfileState);
+
   const newProfile = useSelector(getNewProfile);
 
   const setProfileCallback = useCallback((profile: Partial<Profile>) => {
@@ -63,7 +62,9 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ someClasses }) => {
   );
 
   useEffect(() => {
-    dispatch(getProfileById(id));
+    if (__PROJECT__ !== "storybook") {
+      dispatch(getProfileById(id));
+    }
   }, [dispatch, id]);
 
   return (
