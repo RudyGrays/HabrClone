@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
 import ProfileCard from "./ProfileCard";
-import { ProfileErrorsEnum } from "entities/Profile";
+import { ServerErrorsEnum } from "app/types/globalType";
 
 export default {
   title: "features/EditableProfileCard/ProfileCard",
@@ -35,5 +35,5 @@ Loading.args = {
 export const Error = Template.bind({});
 
 Error.args = {
-  errors: ProfileErrorsEnum.SERVER_ERROR,
+  errors: [ServerErrorsEnum.SERVER_ERROR],
 };

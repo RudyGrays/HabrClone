@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpet_1=self.webpackChunkpet_1||[]).push([[433],{8433:(e,t,n)=>{n.r(t),n.d(t,{default:()=>c});var r=n(5893),s=n(7294),u=n(2327);const c=(0,s.memo)((function(){var e=(0,u.$)().t;return(0,r.jsx)("div",{children:e("страница сообщения")})}))}}]);

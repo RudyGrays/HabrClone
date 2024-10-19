@@ -25,7 +25,7 @@ const Navbar: FC<NavbarProps> = memo(({ otherClasses, short }) => {
         if (RouterConfig[element]?.forAuthUser && !authorized) {
           return;
         }
-        if (element != "страница не найдено") {
+        if (RouterConfig[element].forNavbar === true) {
           return (
             <CustomLink
               disabled={pathname === RouterConfig[element].path}

@@ -39,7 +39,7 @@ export const userSlice = createSlice({
         localStorage.getItem(USER_LOCALSTORAGE_KEY),
       );
 
-      if (user !== null && user !== undefined) {
+      if (user) {
         state.authData.id = user.id;
         state.authData.username = user.username;
         state.authorized = true;

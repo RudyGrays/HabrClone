@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkpet_1=self.webpackChunkpet_1||[]).push([[29],{4029:(s,e,a)=>{a.r(e),a.d(e,{default:()=>n});var r=a(5893),t=a(3005);var c=a(2327);const n=function(s){var e=s.someClasses,a=(0,c.$)().t;return(0,r.jsx)("div",{className:(0,t.A)("sovqddDr",{},[e]),children:a("страница статьи")})}}}]);

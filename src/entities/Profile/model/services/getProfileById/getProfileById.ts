@@ -1,16 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  Profile,
-  ProfileErrors,
-  ProfileErrorsEnum,
-} from "../../types/ProfileSchema";
+import { Profile, ProfileErrors } from "../../types/ProfileSchema";
+import { ThunkConfig } from "app/providers/StoreProvider";
+import { ServerErrorsEnum } from "app/types/globalType";
 
 type ProfileId = string;
 
 export const getProfileById = createAsyncThunk<
   Profile,
   ProfileId,
-  { rejectValue: ProfileErrors }
+  ThunkConfig<ProfileErrors | ServerErrorsEnum[]>
 >("profile/getProfileById", async (id, thunkAPI) => {
   try {
     //@ts-ignore
@@ -19,18 +17,14 @@ export const getProfileById = createAsyncThunk<
     });
 
     if (!response.data) {
-      return thunkAPI.rejectWithValue([
-        ProfileErrorsEnum.NO_DATA,
-      ] as ProfileErrors);
+      return thunkAPI.rejectWithValue([ServerErrorsEnum.NO_DATA]);
     }
 
     thunkAPI.fulfillWithValue(response.data);
 
     return response.data;
   } catch (err: any) {
-    const errorMessage = [err.response?.data?.message] || [
-      ProfileErrorsEnum.SERVER_ERROR,
-    ];
-    return thunkAPI.rejectWithValue(errorMessage as ProfileErrors);
+    const errorMessage = [ServerErrorsEnum.SERVER_ERROR];
+    return thunkAPI.rejectWithValue(errorMessage);
   }
 });

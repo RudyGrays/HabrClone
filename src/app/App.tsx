@@ -28,14 +28,12 @@ const App = memo(() => {
 
   return (
     <div className={classNames("app", {}, [theme])}>
+      <Modals />
       <Suspense fallback={<Loader />}>
         <Header />
-        <FlexContainer styleProps={{ flexDirection: "row" }}>
+        <FlexContainer styleProps={{ flexDirection: "row", maxHeight: "100%" }}>
           <Sidebar />
-          <Content>
-            <Modals />
-            {_init && <AppRouter />}
-          </Content>
+          <Content>{_init && <AppRouter />}</Content>
         </FlexContainer>
       </Suspense>
     </div>

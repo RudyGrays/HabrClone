@@ -11,10 +11,10 @@ interface ModalProps {
   testOpen?: boolean;
 }
 
-const Modal: FC<ModalProps> = ({ someClasses, children, id, testOpen }) => {
+const Modal: FC<ModalProps> = ({ someClasses, children, id }) => {
   const { isModalOpen, toggleModalHandler, modalId } = useModal();
   const [canClose, setCanClose] = useState<boolean>(false);
-  const [isMounted] = useState<boolean>(true);
+  const [isMounted, setIsMounted] = useState<boolean>(true);
 
   const closeModal = useCallback(() => {
     if (canClose) {
@@ -50,43 +50,34 @@ const Modal: FC<ModalProps> = ({ someClasses, children, id, testOpen }) => {
     return () => window.removeEventListener("keydown", onPressEscapeHandler);
   }, [onPressEscapeHandler]);
 
-  // useEffect(() => {
-  //   if (isModalOpen) {
-  //     setIsMounted(true);
-  //   }
-  //   return () => setIsMounted(false);
-  // }, [isModalOpen]);
-
   return (
     <>
-      {isMounted ? (
-        <Portal>
-          {modalId === id ? (
-            <aside
-              className={classNames(
-                mainClasses.Modal,
-                {
-                  [mainClasses.opened]: isModalOpen,
-                  [mainClasses.closed]: !isModalOpen,
-                },
-                [someClasses],
-              )}
+      <Portal>
+        {modalId === id ? (
+          <aside
+            className={classNames(
+              mainClasses.Modal,
+              {
+                [mainClasses.opened]: isModalOpen,
+                [mainClasses.closed]: !isModalOpen,
+              },
+              [someClasses],
+            )}
+          >
+            <div
+              onClick={closeModal}
+              className={classNames(mainClasses.overlay, {}, [])}
             >
               <div
-                onClick={closeModal}
-                className={classNames(mainClasses.overlay, {}, [])}
+                onClick={e => e.stopPropagation()}
+                className={classNames(mainClasses.content, {}, [])}
               >
-                <div
-                  onClick={e => e.stopPropagation()}
-                  className={classNames(mainClasses.content, {}, [])}
-                >
-                  {children}
-                </div>
+                {children}
               </div>
-            </aside>
-          ) : null}
-        </Portal>
-      ) : null}
+            </div>
+          </aside>
+        ) : null}
+      </Portal>
     </>
   );
 };

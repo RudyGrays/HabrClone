@@ -64,6 +64,54 @@ server.post("/profile", (req, res) => {
   }
 });
 
+server.get("/articles", (req, res) => {
+  try {
+    const { id } = req.query;
+    console.log(id);
+    const db = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
+    );
+
+    const { articles = [] } = db;
+
+    const articleFromBd = articles.find(article => article.id === id);
+
+    if (articleFromBd) {
+      return res.json(articleFromBd);
+    }
+
+    return res.status(403).json(id);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e.message });
+  }
+});
+
+server.post("/comments", (req, res) => {
+  try {
+    const { postId } = req.body;
+
+    const db = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
+    );
+
+    const { comments = [] } = db;
+
+    const commentsFromBd = comments.filter(
+      comment => comment.postId === postId,
+    );
+    console.log(commentsFromBd);
+    if (commentsFromBd) {
+      return res.json(commentsFromBd);
+    }
+
+    return res.status(403).json(postId);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e.message });
+  }
+});
+
 server.post("/updateProfile", (req, res) => {
   try {
     const { id, profileData } = req.body;
@@ -92,6 +140,34 @@ server.post("/updateProfile", (req, res) => {
     if (profile) {
       fs.writeFileSync(path.resolve(__dirname, "db.json"), JSON.stringify(db));
       return res.json(profile);
+    }
+    return res.status(403).json("Fail");
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ message: e.message });
+  }
+});
+
+server.post("/comment", (req, res) => {
+  try {
+    const { commentWithoutId } = req.body;
+    console.log(commentWithoutId);
+    const db = JSON.parse(
+      fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
+    );
+
+    const { comments = [] } = db;
+
+    const newComment = {
+      ...commentWithoutId,
+      id: comments.length + 1,
+    };
+
+    db.comments = [...comments, newComment];
+
+    if (commentWithoutId) {
+      fs.writeFileSync(path.resolve(__dirname, "db.json"), JSON.stringify(db));
+      return res.json(newComment);
     }
     return res.status(403).json("Fail");
   } catch (e) {

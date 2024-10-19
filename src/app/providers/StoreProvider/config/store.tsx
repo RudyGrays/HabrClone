@@ -4,10 +4,8 @@ import { userReducer } from "entities/User";
 import { useDispatch } from "react-redux";
 import { createReducerManager } from "./ReducerManager";
 import { $api } from "shared/api/axiosApiInstance";
-import { NavigateFunction } from "react-router-dom";
 
 export const createReduxStore = (
-  navigate: NavigateFunction,
   initialState?: StateSchema,
   asyncReducers?: ReducersMapObject<StateSchema>,
 ) => {
@@ -18,7 +16,6 @@ export const createReduxStore = (
 
   const extraArg: ThunkExtraArg = {
     api: $api,
-    navigate,
   };
 
   const reducerManager = createReducerManager(rootReducers);

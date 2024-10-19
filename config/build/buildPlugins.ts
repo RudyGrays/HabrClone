@@ -15,7 +15,6 @@ export const buildPlugins = ({
     new HtmlWebpackPlugin({
       template: paths.html,
     }),
-    new ReactRefreshWebpackPlugin(),
     new webpack.ProgressPlugin(),
     new miniCssExtractPlugin({
       filename: "css/[name].[contenthash:8].css",
@@ -29,6 +28,7 @@ export const buildPlugins = ({
   ];
 
   if (isDev) {
+    plugins.push(new ReactRefreshWebpackPlugin());
     plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(
       new BundleAnalyzerPlugin({

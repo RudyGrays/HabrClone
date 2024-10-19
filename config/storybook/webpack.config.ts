@@ -13,6 +13,15 @@ export default ({ config }: { config: webpack.Configuration }) => {
   config.resolve.modules.push(paths.src);
   config.resolve.extensions.push(".ts", ".tsx");
   config.module.rules.push(buildScssLoader(true));
+  config.module.rules.push({
+    test: /\.(png|jpg|gif|woff2|woff)$/,
+    use: [
+      {
+        loader: "file-loader",
+        options: {},
+      },
+    ],
+  });
 
   config.module.rules.push({
     test: /\.jsx?$/,

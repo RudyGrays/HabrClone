@@ -12,7 +12,7 @@ export interface ToState {
 interface CustomLinkProps extends Omit<LinkProps, "to"> {
   otherClasses?: string;
   disabled?: boolean;
-  to?: To;
+  to?: To | string;
   children: ReactNode | string;
 }
 

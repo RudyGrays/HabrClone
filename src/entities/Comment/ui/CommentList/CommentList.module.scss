@@ -1,0 +1,27 @@
+.CommentList {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  width: 100%;
+
+  & li {
+    border: 1px solid var(--primary-color);
+    padding: 5px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.skeleton {
+  margin-bottom: 15px;
+}

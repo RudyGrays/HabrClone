@@ -9,20 +9,23 @@ import { useTranslation } from "react-i18next";
 import { Button, ButtonVariants } from "shared/ui/Button";
 import { ProfileErrorsEnum } from "entities/Profile";
 import { Text } from "shared/ui/Text";
+import { ServerErrorsEnum } from "app/types/globalType";
+import { useSelector } from "react-redux";
+import { getUserId } from "entities/User";
 
 interface ProfileCardProps {
   someClasses?: string;
   readonly?: boolean;
   profile: Partial<Profile>;
   isLoading?: boolean;
-  errors?: ProfileErrors;
+  errors?: ProfileErrors | ServerErrorsEnum[];
   setProfileCancel?: () => void;
   setProfile?: (userData: Partial<Profile>) => void;
   setReadonly?: (readonly: boolean) => void;
   setProfileAccess?: () => void;
 }
 interface ProfileCardErrorProps {
-  errors: ProfileErrors;
+  errors: ProfileErrors | ServerErrorsEnum[];
   errorType?: ProfileErrorsEnum;
 }
 
@@ -34,17 +37,17 @@ const ProfileCardError: FC<ProfileCardErrorProps> = ({ errors, errorType }) => {
 
 const ProfileCard: FC<ProfileCardProps> = ({
   someClasses,
-  profile: { age, country, lastname, name },
+  profile: { age, country, lastname, name, id },
   readonly = true,
   setReadonly,
   setProfile,
   setProfileAccess,
   setProfileCancel,
-  errors = undefined,
+  errors = [],
   isLoading = false,
 }) => {
   const { t } = useTranslation();
-
+  const currentUser = useSelector(getUserId);
   if (isLoading) {
     return (
       <div className={classNames(mainClasses.ProfileCard, {}, [someClasses])}>
@@ -55,7 +58,7 @@ const ProfileCard: FC<ProfileCardProps> = ({
     );
   }
 
-  if (!Array.isArray(errors) && errors) {
+  if (errors.length === 1 && errors[0] === ServerErrorsEnum.SERVER_ERROR) {
     return (
       <div className={classNames(mainClasses.ProfileCard, {}, [someClasses])}>
         <div className={classNames(mainClasses.Error, {}, [someClasses])}>
@@ -69,7 +72,10 @@ const ProfileCard: FC<ProfileCardProps> = ({
     <div
       className={classNames(
         mainClasses.ProfileCard,
-        { [mainClasses.edit]: !readonly, [mainClasses.errors]: !!errors },
+        {
+          [mainClasses.edit]: !readonly,
+          [mainClasses.errors]: errors.length > 0,
+        },
         [someClasses],
       )}
     >
@@ -137,34 +143,36 @@ const ProfileCard: FC<ProfileCardProps> = ({
           />
         )}
       </div>
-      <div className={classNames(mainClasses.Buttons, {}, [someClasses])}>
-        {!readonly ? (
-          <>
+      {id === currentUser && (
+        <div className={classNames(mainClasses.Buttons, {}, [someClasses])}>
+          {!readonly ? (
+            <>
+              <Button
+                onClick={setProfileAccess}
+                variants={[ButtonVariants.outline, ButtonVariants.rounded]}
+              >
+                {t<string>("подтвердить")}
+              </Button>
+              <Button
+                onClick={() => {
+                  setReadonly(true);
+                  setProfileCancel();
+                }}
+                variants={[ButtonVariants.rounded, ButtonVariants.warning]}
+              >
+                {t<string>("отмена")}
+              </Button>
+            </>
+          ) : (
             <Button
-              onClick={setProfileAccess}
+              onClick={() => setReadonly(false)}
               variants={[ButtonVariants.outline, ButtonVariants.rounded]}
             >
-              {t<string>("подтвердить")}
+              {t<string>("редактировать")}
             </Button>
-            <Button
-              onClick={() => {
-                setReadonly(true);
-                setProfileCancel();
-              }}
-              variants={[ButtonVariants.rounded, ButtonVariants.warning]}
-            >
-              {t<string>("отмена")}
-            </Button>
-          </>
-        ) : (
-          <Button
-            onClick={() => setReadonly(false)}
-            variants={[ButtonVariants.outline, ButtonVariants.rounded]}
-          >
-            {t<string>("редактировать")}
-          </Button>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

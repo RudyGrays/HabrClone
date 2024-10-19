@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Profile, ProfileErrors, ProfileSchema } from "../types/ProfileSchema";
 import { getProfileById } from "../services/getProfileById/getProfileById";
 import { updateProfileById } from "../services/updateProfileById/updateProfileById";
+import { ServerErrorsEnum } from "app/types/globalType";
 
 export const ProfileState: ProfileSchema = {
   isLoading: false,
@@ -12,12 +13,14 @@ export const ProfileState: ProfileSchema = {
     country: "",
     lastname: "",
     name: "",
+    id: "",
   },
   profileData: {
     age: "",
     country: "",
     lastname: "",
     name: "",
+    id: "",
   },
 };
 
@@ -51,7 +54,7 @@ export const ProfileSlice = createSlice({
       })
       .addCase(
         getProfileById.rejected,
-        (state, action: PayloadAction<ProfileErrors>) => {
+        (state, action: PayloadAction<ProfileErrors | ServerErrorsEnum[]>) => {
           state.isLoading = false;
           state.errors = action.payload;
         },
@@ -59,26 +62,28 @@ export const ProfileSlice = createSlice({
       .addCase(getProfileById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errors = undefined;
-        const { age, country, lastname, name } = action.payload;
+        const { age, country, lastname, name, id, avatar } = action.payload;
 
         const data = {
           age,
           country,
           lastname,
           name,
+          id,
+          avatar,
         };
         state.profileData = data;
         state.newProfileData = data;
       })
 
       //UpdateProfile
-      .addCase(updateProfileById.pending, (state, action) => {
+      .addCase(updateProfileById.pending, state => {
         state.isLoading = true;
         state.errors = undefined;
       })
       .addCase(
         updateProfileById.rejected,
-        (state, action: PayloadAction<ProfileErrors>) => {
+        (state, action: PayloadAction<ProfileErrors | ServerErrorsEnum[]>) => {
           state.isLoading = false;
           state.errors = action.payload;
         },
@@ -86,12 +91,14 @@ export const ProfileSlice = createSlice({
       .addCase(updateProfileById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errors = undefined;
-        const { age, country, lastname, name } = action.payload;
+        const { age, country, lastname, name, id, avatar } = action.payload;
         const data = {
           age,
           country,
           lastname,
           name,
+          id,
+          avatar,
         };
         state.profileData = data;
         state.readonly = true;

@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { getUserId } from "entities/User";
 import { useAppDispatch } from "app/providers/StoreProvider/config/store";
 import { updateProfileById } from "entities/Profile/model/services/updateProfileById/updateProfileById";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface ProfilePageProps {
   someClasses?: string;
@@ -27,13 +28,16 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ someClasses }) => {
   const { t } = useTranslation();
 
   useDynamicReducerLoader("profile", profileReducer);
-
+  const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const id = useSelector(getUserId);
+  const myId = useSelector(getUserId);
   const error = useSelector(getProfileError);
   const isLoading = useSelector(getProfileLoading);
   const readonly = useSelector(getProfileReadonly);
+
+  const userId = id ?? myId;
 
   const newProfile = useSelector(getNewProfile);
 
@@ -44,11 +48,11 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ someClasses }) => {
   const setProfileAccess = useCallback(() => {
     const profileData = {
       profileData: newProfile as Profile,
-      id: id,
+      id: myId,
     };
 
     dispatch(updateProfileById(profileData));
-  }, [dispatch, newProfile, id]);
+  }, [dispatch, newProfile, userId]);
 
   const setProfileCancel = useCallback(() => {
     dispatch(profileActions.setInitialNewProfile());
@@ -63,9 +67,9 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ someClasses }) => {
 
   useEffect(() => {
     if (__PROJECT__ !== "storybook") {
-      dispatch(getProfileById(id));
+      dispatch(getProfileById(userId));
     }
-  }, [dispatch, id]);
+  }, [dispatch, userId]);
 
   return (
     <div className={classNames(mainClasses.ProfilePage, {}, [someClasses])}>
