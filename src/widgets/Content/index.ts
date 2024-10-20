@@ -1,4 +1,3 @@
-import Content from './ui/Content'
+import Content from "./ui/Content";
 
-export { Content }
-
+export { Content };

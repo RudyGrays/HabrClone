@@ -1,3 +1,16 @@
+// import "react-i18next";
+// declare module "react-i18next" {
+//   interface I18nextProviderProps {
+//     children: React.ReactNode;
+//   }
+// }
+
+declare type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
+
 declare module "*.scss" {
   interface IClassNames {
     [className: string]: string;
@@ -14,12 +27,6 @@ declare module "*.svg" {
 declare const __IS_DEV__: boolean;
 declare const __API_URL__: string;
 declare const __PROJECT__: "frontend" | "jest" | "storybook";
-
-declare type DeepPartial<T> = T extends object
-  ? {
-      [P in keyof T]?: DeepPartial<T[P]>;
-    }
-  : T;
 
 declare module "*.jpg" {
   const value: string;
