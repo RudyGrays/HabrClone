@@ -2,7 +2,7 @@
   flex-grow: 1;
   max-height: calc(100vh - var(--header-height));
   padding: 20px;
-  overflow: auto;
+  overflow: hidden;
   scrollbar-width: thin;
   scrollbar-color: var(--primary-color) var(--bg-color);
 }

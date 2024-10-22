@@ -64,28 +64,28 @@ server.post("/profile", (req, res) => {
   }
 });
 
-server.get("/articles", (req, res) => {
-  try {
-    const { id } = req.query;
-    console.log(id);
-    const db = JSON.parse(
-      fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
-    );
+// server.get("/articles", (req, res) => {
+//   try {
+//     const { id } = req.query;
+//     console.log(id);
+//     const db = JSON.parse(
+//       fs.readFileSync(path.resolve(__dirname, "db.json"), "UTF-8"),
+//     );
 
-    const { articles = [] } = db;
+//     const { articles = [] } = db;
 
-    const articleFromBd = articles.find(article => article.id === id);
+//     const articleFromBd = articles.find(article => article.id === id);
 
-    if (articleFromBd) {
-      return res.json(articleFromBd);
-    }
+//     if (articleFromBd) {
+//       return res.json(articleFromBd);
+//     }
 
-    return res.status(403).json(id);
-  } catch (e) {
-    console.log(e);
-    return res.status(500).json({ message: e.message });
-  }
-});
+//     return res.status(403).json(id);
+//   } catch (e) {
+//     console.log(e);
+//     return res.status(500).json({ message: e.message });
+//   }
+// });
 
 server.post("/comments", (req, res) => {
   try {

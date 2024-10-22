@@ -1,0 +1,53 @@
+.ArticleSmallCardItem {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 280px;
+  border-radius: 5px;
+  background-color: var(--inverted-color);
+
+  &.isHovered {
+    background-color: rgb(103 103 103 / 61.9%);
+    transform: scale(1.1);
+  }
+}
+
+.ImageWrapper {
+  width: 100%;
+  height: 60%;
+  position: relative;
+  padding: 5px;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  & span {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+}
+
+.ContentWrapper {
+  padding: 5px;
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ContentTitle {
+  display: flex;
+  width: 100%;
+  height: 40%;
+  justify-content: space-between;
+}
+
+.ContentSubtitle {
+  width: 100%;
+  height: 60%;
+  display: flex;
+}

@@ -42,7 +42,11 @@ export enum ArticleType {
   SCIENCE = "SCIENCE",
   ECONOMICS = "ECONOMICS",
 }
-
+export interface ArticleAuthor {
+  name: string;
+  avatar: string;
+  id: string;
+}
 export interface Article {
   id: string;
   title: string;
@@ -52,4 +56,5 @@ export interface Article {
   createdAt: string;
   type: ArticleType[];
   blocks: ArticleBlock[];
+  author: ArticleAuthor;
 }

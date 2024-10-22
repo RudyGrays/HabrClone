@@ -34,7 +34,7 @@ const AddCommentForm: FC<AddCommentFormProps> = ({
     body: "",
     title: "",
   });
-  console.log(comment);
+
   return (
     <form
       onSubmit={e => {

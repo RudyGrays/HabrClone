@@ -1,3 +1,20 @@
 .ArticlesPage {
   display: block;
+  height: 100%;
+  padding-bottom: 30px;
+  overflow: hidden;
+}
+
+.ViewSwitchers {
+  display: flex;
+  width: 100%;
+  justify-content: end;
+}
+
+.ViewSwitcherItem {
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }

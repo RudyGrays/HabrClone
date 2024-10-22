@@ -83,6 +83,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ someClasses }) => {
     dispatch(getArticleById(id));
     dispatch(getComments({ byValue: id }));
     dispatch(getProfileById(userId));
+    console.log("dispatch");
   }, [dispatch, id]);
 
   const renderBlock = useCallback((block: ArticleBlock) => {

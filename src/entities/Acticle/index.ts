@@ -17,6 +17,7 @@ export {
   ArticleImageBlock,
   ArticleTextBlock,
   ArticleType,
+  ArticleSchema,
 } from "./model/types/Article";
 export {
   getArticleIsLoading,

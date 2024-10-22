@@ -6,12 +6,13 @@ import {
   ReducersMapObject,
 } from "@reduxjs/toolkit";
 import { AxiosInstance } from "axios";
-import { ArticleSchema } from "entities/Acticle/model/types/Article";
+import { ArticleSchema } from "entities/Acticle";
 import { CommentSchema } from "entities/Comment";
 import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { LoginSchema } from "features/AuthByUsername";
 import { ProfileCardSchema } from "features/EditableProfileCard";
+import { ArticlesSchema } from "features/ArticlesList";
 
 export interface StateSchema {
   loginForm?: LoginSchema;
@@ -20,6 +21,7 @@ export interface StateSchema {
   profileCard?: ProfileCardSchema;
   article?: ArticleSchema;
   comment?: CommentSchema;
+  articles?: ArticlesSchema;
 }
 
 export type ReducersList = {

@@ -1,5 +1,5 @@
 import { classNames } from "shared/lib/ClassNames/classNames";
-import { CSSProperties, memo } from "react";
+import { CSSProperties, FC, memo, ReactNode } from "react";
 import cls from "./Skeleton.module.scss";
 
 interface SkeletonProps {
@@ -7,10 +7,11 @@ interface SkeletonProps {
   height?: string | number;
   width?: string | number;
   border?: string;
+  children?: ReactNode;
 }
 
-export const Skeleton = memo((props: SkeletonProps) => {
-  const { className, height, width, border } = props;
+export const Skeleton: FC<SkeletonProps> = memo(props => {
+  const { className, height, width, border, children } = props;
 
   const styles: CSSProperties = {
     width,
@@ -19,6 +20,8 @@ export const Skeleton = memo((props: SkeletonProps) => {
   };
 
   return (
-    <div className={classNames(cls.Skeleton, {}, [className])} style={styles} />
+    <div className={classNames(cls.Skeleton, {}, [className])} style={styles}>
+      {children}
+    </div>
   );
 });

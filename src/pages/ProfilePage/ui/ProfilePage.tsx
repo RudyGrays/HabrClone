@@ -60,7 +60,7 @@ const ProfilePage: FC<ProfilePageProps> = memo(({ someClasses }) => {
 
   const setReadonlyCallback = useCallback(
     (readonly: boolean) => {
-      return dispatch(profileActions.setReadonly(readonly));
+      dispatch(profileActions.setReadonly(readonly));
     },
     [readonly],
   );
